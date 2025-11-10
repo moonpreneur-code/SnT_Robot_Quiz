@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Robot Quiz Simulator - Three Questions with Obstacle</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="quiz-container" role="main" aria-label="Robot Quiz Simulator">
+    <div id="feedback" aria-live="polite" aria-atomic="true"></div>
+    <header class="question-bar" id="question-text"></header>
+    <main class="main-area">
+      <section class="code-section" aria-label="Code snippet for the question">
+        <pre><code id="question-code"></code></pre>
+      </section>
+      <section class="simulation" aria-label="Robot simulation area">
+        <div id="simulation-area">
+          <div id="robot-car" aria-label="Robot visualization" role="img" tabindex="0">
+            <div class="wheel front-left"></div>
+            <div class="wheel front-right"></div>
+            <div class="wheel back-left"></div>
+            <div class="wheel back-right"></div>
+            <div class="headlight left"></div>
+            <div class="headlight right"></div>
+          </div>
+          <div id="obstacle-wall" aria-hidden="true"></div>
+          <div class="start-label" aria-hidden="true">Start Area (Center)</div>
+        </div>
+      </section>
+      <aside class="options" id="options" aria-label="Answer options">
+        <div class="actions">
+          <button id="resetBtn" class="secondary" aria-label="Reset question">Reset</button>
+          <button id="nextBtn" class="secondary" aria-label="Next question" disabled>Next</button>
+        </div>
+      </aside>
+    </main>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+  <script src="script.js"></script> 
+</body>
+</html>
