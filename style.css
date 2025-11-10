@@ -1,0 +1,323 @@
+/* Reset & base */
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9fafd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 8px 12px;
+    color: #333;
+    user-select: none;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.quiz-container {
+    width: 100vw;
+    max-width: 1440px;
+    height: 95vh;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    font-size: 16px;
+}
+
+#feedback {
+    font-weight: 700;
+    font-size: 1.5rem;
+    padding: 18px 20px;
+    color: #2a9d8f;
+    text-align: center;
+    background: #e3f5f2;
+    border-bottom: 3px solid #4a90e2;
+    min-height: 50px;
+    user-select: none;
+    box-shadow: inset 0 -2px 6px #9ad7d0;
+    transition: color 0.3s ease;
+}
+
+header.question-bar {
+    background-color: #4a90e2;
+    color: #fff;
+    text-align: center;
+    padding: 20px 15px;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    line-height: 1.2;
+    box-shadow: inset 0 -4px 8px rgba(0, 0, 0, 0.1);
+    user-select: none;
+}
+
+main.main-area {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+section.code-section {
+    flex: 1.5;
+    background-color: #1f2937;
+    color: #d1d5db;
+    font-family: 'Fira Mono', monospace;
+    font-size: 1rem;
+    padding: 22px 25px;
+    overflow-y: auto;
+    border-right: 3px solid #cad4f7;
+    border-bottom-left-radius: 20px;
+    box-shadow: inset 3px 0 10px #acc7f7;
+    user-select: text;
+    white-space: pre-wrap;
+    line-height: 1.45;
+}
+
+section.simulation {
+    flex: 2;
+    background: none;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 25px 20px;
+    user-select: none;
+}
+
+#simulation-area {
+    position: relative;
+    width: 600px;
+    height: 450px;
+    background-color: #e8f1fc;
+    background-image:
+    linear-gradient(to right, #a8c9ff 1px, transparent 1px),
+    linear-gradient(to bottom, #a8c9ff 1px, transparent 1px);
+    background-size: 30px 30px;
+    background-repeat: repeat;
+    border: 5px dashed #4a90e2;
+    border-radius: 1.5rem;
+    box-sizing: border-box;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.start-label {
+    position: absolute;
+    top: 8px;
+    left: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #3a5299;
+    z-index: 11;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    user-select: none;
+}
+
+#robot-car {
+    position: absolute;
+    width: 80px;
+    height: 120px;
+    left: 260px;
+    top: 165px;
+    background: linear-gradient(180deg, #2e426d 0%, #1a2c52 100%);
+    border-radius: 16px;
+    border: 2px solid #23345a;
+    box-shadow: 0 10px 15px rgba(20, 35, 75, 0.5);
+    z-index: 20;
+    transition: transform 1s ease;
+    transform-origin: center;
+    cursor: grab;
+}
+#robot-car::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    height: 25px;
+    background: linear-gradient(180deg, #8db0ff 0%, #2e426d 100%);
+    border-radius: 6px;
+    box-shadow: inset 0 0 12px rgba(255,255,255,0.5);
+}
+#robot-car .wheel {
+    position: absolute;
+    width: 14px;
+    height: 28px;
+    background-color: #1c2b48;
+    border-radius: 6px;
+    box-shadow: inset 0 0 4px #354a7b;
+    background-image:
+    linear-gradient(0deg, #3b507f 0px, #3b507f 3px, transparent 3px, transparent 7px),
+    linear-gradient(45deg, #5271b3 0px, #5271b3 2px, transparent 2px, transparent 4px);
+    background-size: 100% 14px, 100% 8px;
+    background-repeat: repeat;
+}
+#robot-car .wheel.front-left  { top: 10px; left: -10px; }
+#robot-car .wheel.front-right { top: 10px; right: -10px; }
+#robot-car .wheel.back-left   { bottom: 10px; left: -10px; }
+#robot-car .wheel.back-right  { bottom: 10px; right: -10px; }
+
+#robot-car .headlight {
+    position: absolute;
+    top: 2px;
+    width: 10px;
+    height: 6px;
+    background: radial-gradient(circle, #f9f7cc 20%, #dede8a 50%, transparent 100%);
+    border-radius: 3px;
+    animation: headlight-glow 2.5s ease-in-out infinite;
+}
+#robot-car .headlight.left { left: 14px; }
+#robot-car .headlight.right { right: 14px; }
+
+@keyframes headlight-glow {
+    0%,100% { opacity: 0.65; }
+    50% { opacity: 1; }
+}
+
+#obstacle-wall {
+    position: absolute;
+    width: 180px;
+    height: 10px;
+    background-color: #23345a;
+    left: 260px;
+    top: 90px;
+    z-index: 15;
+    border-radius: 6px;
+    box-shadow: 0 0 10px #4a90e2aa;
+    display: none;
+    transition: opacity 0.5s ease;
+}
+
+aside.options {
+    flex: 1;
+    background-color: #f5f8ff;
+    padding: 20px 25px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 14px;
+    overflow-y: auto;
+    border-left: 3px solid #a8c9ff;
+    border-bottom-right-radius: 20px;
+    position: relative;
+}
+
+.actions {
+    display: flex;
+    gap: 16px;
+    justify-content: flex-end;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #cbd8ff;
+    background-color: #f5f8ff;
+    position: sticky;
+    bottom: 0;
+    z-index: 20;
+}
+
+.option {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 14px 18px;
+    font-size: 1.2rem;
+    border-radius: 16px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background-color 0.3s, transform 0.15s;
+    text-align: left;
+    user-select: none;
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.25);
+}
+.option:hover:not(:disabled) {
+    background-color: #5a9eed;
+    transform: scale(1.04);
+}
+.option:disabled {
+    cursor: default;
+    background-color: #9abff7;
+    box-shadow: none;
+    color: #e2e9ff;
+    transform: none;
+}
+
+.secondary {
+    background: transparent;
+    color: #4a90e2;
+    border: 3px solid #4a90e2;
+    padding: 14px 24px;
+    border-radius: 16px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1.15rem;
+    transition: background-color 0.3s ease;
+    user-select: none;
+    min-width: 130px;
+    box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
+}
+.secondary:disabled {
+    cursor: default;
+    color: #b9c8f6;
+    border-color: #b9c8f6;
+    background-color: transparent;
+    box-shadow: none;
+}
+.secondary:hover:not(:disabled) {
+    background-color: #d3e0ff;
+}
+
+.code-section::-webkit-scrollbar,
+aside.options::-webkit-scrollbar {
+    width: 10px;
+}
+.code-section::-webkit-scrollbar-thumb,
+aside.options::-webkit-scrollbar-thumb {
+    background-color: #9bbef9;
+    border-radius: 16px;
+}
+.code-section::-webkit-scrollbar-track,
+aside.options::-webkit-scrollbar-track {
+    background-color: #eef5ff;
+    border-radius: 16px;
+}
+
+@media (max-width: 900px) {
+    main.main-area {
+    flex-direction: column;
+    }
+    .code-section {
+    flex: unset;
+    height: 150px;
+    border-right: none;
+    border-bottom: 3px solid #cad4f7;
+    border-radius: 0 0 20px 20px;
+    box-shadow: none;
+    }
+    section.simulation {
+    flex: unset;
+    padding: 20px 0 50px;
+    }
+    aside.options {
+    flex: unset;
+    border-left: none;
+    border-top: 3px solid #a8c9ff;
+    border-radius: 20px 20px 0 0;
+    padding: 20px;
+    }
+    .actions {
+    position: static;
+    margin-top: 20px;
+    padding-top: 0;
+    }
+}
